@@ -1,9 +1,8 @@
-void setup() {
-  // put your setup code here, to run once:
+#include "accelerometer.h"
 
+void setup() {
+  initAccelerometer();
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-
 }
