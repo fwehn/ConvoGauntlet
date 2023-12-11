@@ -1,36 +1,27 @@
 const {SerialPort, ReadlineParser} = require("serialport");
 
-async function init(fn) {
-    const portList = await SerialPort.list();
-    const path = (portList.filter(port => port["friendlyName"].startsWith("USB-SERIAL CH340"))[0] || {})["path"];
+let port = new SerialPort({
+    path: process.argv[2] || "/dev/ttyUSB0",
+    baudRate: 9600
+}).setEncoding("utf8");
 
-    if (!path) {
-        throw new Error("No serial device found!");
-    }
+port.on('open', () => console.log("Serial device connected"));
+port.on('close', () => setTimeout(() => port.open(), 5000));
+port.on('error', () => setTimeout(() => port.open(), 5000));
 
-    const port = new SerialPort({
-        path: path,
-        baudRate: 9600
-    }).setEncoding("utf8");
-
-    port.on('open', () => console.log("Serial device connected on port: " + path));
-
+function onData(fn) {
     const parser = port.pipe(new ReadlineParser({delimiter: '\r\n'}));
-    parser.on('data', data => fn(onData(data)));
+    parser.on('data', (data) => {
+        const matches = [...data.toString().replaceAll("\n", "").matchAll(/([agf])=([\s\-;\d]*)/gm)];
 
-    return port;
+        let formattedData = {};
+
+        for (let i in matches) {
+            formattedData[matches[i][1]] = matches[i][2].split(";").map(value => parseInt(value))
+        }
+
+        fn(formattedData)
+    });
 }
 
-function onData(data) {
-    const matches = [...data.toString().replaceAll("\n", "").matchAll(/([agf])=([\s\-;\d]*)/gm)];
-
-    let formattedData = {};
-
-    for (let i in matches) {
-        formattedData[matches[i][1]] = matches[i][2].split(";").map(value => parseInt(value))
-    }
-
-    return formattedData;
-}
-
-module.exports = {init}
+module.exports = {onData};
