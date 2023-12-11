@@ -8,4 +8,4 @@ Link to our [Miro-Board](https://miro.com/app/board/uXjVNS7nv_c=/).
 
 [//]: # (TODO write a Concept)
 
-![Concept-Image](./assets/concept.jpg)
+![Concept-Image](./assets/Concept.jpg)
