@@ -1,0 +1,5 @@
+.idea
+.vscode
+src/satellite/debug.log
+src/base/node_modules
+src/frontend/node_modules
