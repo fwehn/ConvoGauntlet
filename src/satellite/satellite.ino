@@ -13,12 +13,11 @@ char* convert_int16_to_str(int16_t i) {
 void setup() {
   Serial.begin(9600);
   Wire.begin();
-  Wire.beginTransmission(I2C_address_MPU); // Starten der I2C übertragung
+  Wire.beginTransmission(I2C_address_MPU);
   Wire.write(0x6B);
   Wire.write(0);
   Wire.endTransmission(true);
 }
-
 
 void loop() {
   Wire.beginTransmission(I2C_address_MPU);
@@ -41,11 +40,11 @@ void loop() {
     Serial.print(convert_int16_to_str(gX));Serial.print(";");
     Serial.print(convert_int16_to_str(gX));
   Serial.print("f=");
-    Serial.print(convert_int16_to_str(1023));Serial.print(";");
-    Serial.print(convert_int16_to_str(2456));Serial.print(";");
-    Serial.print(convert_int16_to_str(12431244));Serial.print(";");
-    Serial.print(convert_int16_to_str(1234));Serial.print(";");
-    Serial.print(convert_int16_to_str(1234));
+    Serial.print(convert_int16_to_str(analogRead(A0)));Serial.print(";");
+    Serial.print(convert_int16_to_str(analogRead(A1)));Serial.print(";");
+    Serial.print(convert_int16_to_str(analogRead(A2)));Serial.print(";");
+    Serial.print(convert_int16_to_str(analogRead(A3)));Serial.print(";");
+    Serial.print(convert_int16_to_str(analogRead(A6)));
   Serial.println();
   delay(1000);
 }
