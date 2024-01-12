@@ -1,0 +1,15 @@
+{
+    "root": true,
+    "parserOptions": {
+        "ecmaVersion": 2022,
+        "sourceType": "module"
+    },
+    "extends": ["eslint:recommended", "prettier"],
+    "env": {
+        "es6": true,
+        "node": true
+    },
+    "rules": {
+        "no-console": "warn"
+    }
+}
