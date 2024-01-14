@@ -1,11 +1,22 @@
 const EventEmitter = require("node:events");
 const eventEmitter = new EventEmitter();
 
+const gestureTime = parseInt(process.env.GESTURETIME || 3000);
 let lastGesture = "";
 let timeout;
 
-// TODO rename this shit
-function read(data) {
+let valueMap = {};
+let lastCharacter = "@";
+const flexSensorZones = parseInt(process.env.FLEXSENSORZONES || 8);
+const flexSensorMin = parseInt(process.env.FLEXSENSORMIN || 400);
+const flexSensorMax = parseInt(process.env.FLEXSENSORMAX || 600);
+
+for (let i = 0; i < flexSensorZones; i++) {
+    lastCharacter = String.fromCharCode(lastCharacter.charCodeAt(0) + 1);
+    valueMap[lastCharacter] = flexSensorMin + ((flexSensorMax - flexSensorMin) / flexSensorZones) * i;
+}
+
+function analyze(data) {
     let currentGesture =
         data["f"].reduce((carry, value) => carry + readFlexSensor(value), "") +
         "_" +
@@ -19,16 +30,21 @@ function read(data) {
         timeout = setTimeout(() => {
             eventEmitter.emit("gesture", currentGesture);
             lastGesture = "";
-        }, 3000); // TODO make this time customizable
+        }, gestureTime);
 
         lastGesture = currentGesture;
     }
 }
 
-// TODO assign values to Letters
-// eslint-disable-next-line no-unused-vars
 function readFlexSensor(sensorValue) {
-    return "A";
+    let currentValue = "A";
+
+    for (let letter in valueMap) {
+        if (sensorValue >= valueMap[letter]) break;
+        currentValue = letter;
+    }
+
+    return currentValue;
 }
 
 // TODO find a way to characterize motions
@@ -45,4 +61,4 @@ function onDebug(fn) {
     eventEmitter.on("debug", fn);
 }
 
-module.exports = { read, onGesture, onDebug };
+module.exports = { analyze, onGesture, onDebug };
