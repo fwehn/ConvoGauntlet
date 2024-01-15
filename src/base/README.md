@@ -19,6 +19,11 @@ The available ENV-variables are:
 RESTPORT=3000
 WSPORT=3001
 SERIALPORT=COM3
+TTSURL=http://marytts
+GESTURETIME=1500
+FLEXSENSORZONES=8
+FLEXSENSORMIN=400
+FLEXSENSORMAX=600
 ```
 
 After you created the `.env` file and modified it, you can simply run `npm run dev`.  
