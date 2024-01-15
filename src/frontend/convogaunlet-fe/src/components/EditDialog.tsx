@@ -19,7 +19,7 @@ export default function EditDialog() {
   };
 
   return (
-    <React.Fragment>
+    <>
       <Button
         variant="contained"
         onClick={handleClickOpen}
@@ -52,6 +52,6 @@ export default function EditDialog() {
           <Button onClick={handleClose}>Save</Button>
         </DialogActions>
       </Dialog>
-    </React.Fragment>
+    </>
   );
 }
