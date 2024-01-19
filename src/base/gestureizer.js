@@ -40,8 +40,8 @@ function readFlexSensor(sensorValue) {
     let currentValue = "A";
 
     for (let letter in valueMap) {
-        if (sensorValue >= valueMap[letter]) break;
-        currentValue = letter;
+        if (sensorValue >= valueMap[letter]) currentValue = letter;
+        else return currentValue;
     }
 
     return currentValue;
@@ -50,7 +50,7 @@ function readFlexSensor(sensorValue) {
 // TODO find a way to characterize motions
 // eslint-disable-next-line no-unused-vars
 function readAccelerometerAndGyroscope(ax, ay, az, gx, gy, gz) {
-    return "wave";
+    return "up";
 }
 
 function onGesture(fn) {
