@@ -35,6 +35,7 @@ When there is no `SERIALPORT` defined or the service cannot connect to, it will 
 To connect to the websocket provided by the base service, add the following to your HTML:
 
 ```html
+
 <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
 <script>
     let socket = io("ws://localhost:<Port set in .env file>");
@@ -47,13 +48,14 @@ Insert the port number you set in the `.env` file (Default: `3001`).
 
 ## API
 
-After starting the base service, the REST api will be available at `http://localhost:<Öort set in .env file>`.  
+After starting the base service, the REST api will be available at `http://localhost:<port set in .env file>`.  
 You can change the port by setting it in the `.env` file (Default: `3000`).
 
 ### Gestures
 
-| Method | Endpoint  | Body                                                 |
-| ------ | --------- | ---------------------------------------------------- |
-| GET    | /gestures | doesn't matter                                       |
-| POST   | /gestures | `{"gesture": "AAAAA_up", "sentence": "Hello World"}` |
-| DELETE | /gestures | `{"gesture": "AAAAA_up"}`                            |
+| Method | Endpoint   | Body                                                 |
+|--------|------------|------------------------------------------------------|
+| POST   | /calibrate | `{"mode": "min", "calculate": true}`                 |
+| GET    | /gestures  | doesn't matter                                       |
+| POST   | /gestures  | `{"gesture": "AAAAA_up", "sentence": "Hello World"}` |
+| DELETE | /gestures  | `{"gesture": "AAAAA_up"}`                            |

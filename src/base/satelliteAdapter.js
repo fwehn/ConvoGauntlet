@@ -14,7 +14,7 @@ function start() {
     return new Promise((resolve, reject) => {
         try {
             let timeout = setTimeout(() => {
-                resolve(["SatelliteAdapter: Started in 'dummy' mode"]);
+                resolve([`SatelliteAdapter: Started in 'dummy' mode (could not open ${satellitePort})`]);
             }, 1000);
 
             port.on("open", (...params) => {

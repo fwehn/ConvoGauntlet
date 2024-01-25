@@ -1,13 +1,13 @@
 const fs = require("fs");
 const path = require("path");
 
-const configFilePath = path.join(__dirname, "config", "config.json");
-
-function readConfigFile() {
+function readConfigFile(fileName = "config") {
+    const configFilePath = path.join(__dirname, "config", `${fileName}.json`);
     return fs.existsSync(configFilePath) ? JSON.parse(fs.readFileSync(configFilePath).toString()) : {};
 }
 
-function writeConfigFile(config) {
+function writeConfigFile(fileName = "config", config = {}) {
+    const configFilePath = path.join(__dirname, "config", `${fileName}.json`);
     fs.writeFileSync(configFilePath, JSON.stringify(config, null, 2));
 }
 
