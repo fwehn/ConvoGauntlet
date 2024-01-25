@@ -3,6 +3,11 @@
 src/satellite/debug.log
 src/base/node_modules
 src/base/config
-src/base/.env
 !src/base/config/.gitkeep
+src/base/tmp
+!src/base/tmp/.gitkeep
+src/base/.env
 src/frontend/node_modules
+volumes/*
+!volumes/base-config/.gitkeep
+!volumes/base-tmp/.gitkeep

@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+  marytts:
+    image: "synesthesiam/marytts:5.2"
+    restart: unless-stopped
+    networks:
+      - convo-gauntlet
+    command: --voice cmu-bdl-hsmm
+
+  base:
+    build:
+      dockerfile: ./Dockerfile
+      context: ./src/base
+    depends_on:
+      - marytts
+    restart: unless-stopped
+    volumes:
+      - "./asound.conf:/etc/asound.conf"
+      - "./volumes/base-config:/usr/src/convo-gauntlet-base/config"
+      - "./volumes/base-tmp:/usr/src/convo-gauntlet-base/tmp"
+    devices:
+      - "/dev/snd:/dev/snd"
+      - "/dev/ttyUSB0:/dev/ttyUSB0"
+    networks:
+      - convo-gauntlet
+    environment:
+      - FLEXSENSORZONES=4
+      - GESTURETIME=1500
+      - TTSURL=http://marytts:59125
+    ports:
+      - "3000:3000"
+      - "3001:3001"
+
+networks:
+  convo-gauntlet:
