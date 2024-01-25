@@ -73,6 +73,9 @@ function readFlexSensor(index, sensorValue) {
 // TODO find a way to characterize motions
 // eslint-disable-next-line no-unused-vars
 function readAccelerometerAndGyroscope(ax, ay, az, gx, gy, gz) {
+    /*console.log(ax, ay, az);
+    console.log(gx, gy, gz);
+*/
     return "up";
 }
 
