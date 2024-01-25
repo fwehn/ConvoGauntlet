@@ -33,12 +33,12 @@ void loop() {
 
   Serial.print("a=");
     Serial.print(convert_int16_to_str(aX));Serial.print(";");
-    Serial.print(convert_int16_to_str(aX));Serial.print(";");
-    Serial.print(convert_int16_to_str(aX));
+    Serial.print(convert_int16_to_str(aY));Serial.print(";");
+    Serial.print(convert_int16_to_str(aZ));
   Serial.print("g=");
     Serial.print(convert_int16_to_str(gX));Serial.print(";");
-    Serial.print(convert_int16_to_str(gX));Serial.print(";");
-    Serial.print(convert_int16_to_str(gX));
+    Serial.print(convert_int16_to_str(gY));Serial.print(";");
+    Serial.print(convert_int16_to_str(gZ));
   Serial.print("f=");
     Serial.print(convert_int16_to_str(analogRead(A0)));Serial.print(";");
     Serial.print(convert_int16_to_str(analogRead(A1)));Serial.print(";");
@@ -46,5 +46,4 @@ void loop() {
     Serial.print(convert_int16_to_str(analogRead(A3)));Serial.print(";");
     Serial.print(convert_int16_to_str(analogRead(A6)));
   Serial.println();
-  delay(1000);
 }

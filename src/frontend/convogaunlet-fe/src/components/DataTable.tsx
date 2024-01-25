@@ -37,7 +37,7 @@ const CenteredTable: React.FC = () => {
                   Row {index + 1}, Cell 2
                 </TableCell>
                 <TableCell sx={{ border: 1 }}>
-                  Row {index + 1}, Cell 3
+                  Row {index + 1}, Cell 4
                 </TableCell>
                 <TableCell sx={{ border: 1 }}>
                   Row {index + 1}, Cell 4
