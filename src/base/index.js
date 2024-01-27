@@ -15,6 +15,8 @@ Promise.all([satelliteAdapter.start(), websocket.start(), rest.start()])
         gestureizer.onGesture((gesture) => {
             websocket.emitDebug(gesture);
 
+            console.log(gesture);
+
             if (!busy && fileHandler.readConfigFile("gestures")[gesture]) {
                 busy = true;
                 ttsAdapter.sayText(fileHandler.readConfigFile("gestures")[gesture])
@@ -22,6 +24,7 @@ Promise.all([satelliteAdapter.start(), websocket.start(), rest.start()])
                     .catch(console.error)
                     .finally(() => busy = false);
             }
+
         });
     })
     // eslint-disable-next-line no-console
