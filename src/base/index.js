@@ -15,6 +15,7 @@ Promise.all([satelliteAdapter.start(), websocket.start(), rest.start()])
         gestureizer.onGesture((gesture) => {
             websocket.emitDebug(gesture);
 
+            // eslint-disable-next-line no-console
             console.log(gesture);
 
             if (!busy && fileHandler.readConfigFile("gestures")[gesture]) {
