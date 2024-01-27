@@ -18,8 +18,10 @@ Link to our [Miro-Board](https://miro.com/app/board/uXjVNS7nv_c=/).
 The following packages are required to run ConvoGauntlet:
 
 - Git
-- Docker
+- Docker and Docker-Compose
 - ALSA and ALSA Utils
+
+After you installed all required packages, you can simply run the following commands:
 
 ```shell
 git clone https://github.com/fwehn/ConvoGauntlet.git
