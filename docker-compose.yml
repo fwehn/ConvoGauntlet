@@ -32,5 +32,17 @@ services:
       - "3000:3000"
       - "3001:3001"
 
+  frontend:
+    build:
+      dockerfile: ./Dockerfile
+      context: src/frontend/convogaunlet-fe
+    depends_on:
+      - base
+    restart: unless-stopped
+    networks:
+      - convo-gauntlet
+    ports:
+      - "80:80"
+
 networks:
   convo-gauntlet:
