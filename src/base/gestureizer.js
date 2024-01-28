@@ -44,7 +44,7 @@ function analyze(data) {
     let currentGesture =
         data["f"].reduce((carry, value, index) => carry + readFlexSensor(index, value), "") +
         "_" +
-        readAccelerometerAndGyroscope(...data["a"], ...data["g"]);
+        readAccelerometerAndGyroscope(...data["a"]);
 
     eventEmitter.emit("debug", currentGesture);
 
@@ -70,10 +70,16 @@ function readFlexSensor(index, sensorValue) {
     return currentValue;
 }
 
-// TODO find a way to characterize motions
-// eslint-disable-next-line no-unused-vars
-function readAccelerometerAndGyroscope(ax, ay, az, gx, gy, gz) {
-    return "up";
+function readAccelerometerAndGyroscope(ax, ay, az) {
+    const limit = 10000;
+
+    return [ax, ay, az].map(value => {
+        if (value > limit) return 2;
+        if (value < -limit) return 1;
+        return 0;
+    }).reduce((carry, value, index) => {
+        return carry + (value * Math.pow(3, index));
+    }, 0);
 }
 
 function onGesture(fn) {
