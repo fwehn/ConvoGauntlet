@@ -9,7 +9,11 @@ import { DialogTitle } from "@mui/material";
 import { postGesture } from "../rest/rest.tsx";
 import { useState } from "react";
 
-export default function EditDialog({ gesture, sentence , onSaved = (sentence) => {}}) {
+export default function EditDialog({ gesture, sentence, onSaved }: {
+    gesture: string,
+    sentence: string,
+    onSaved: (sentence: string) => void
+}) {
     const [open, setOpen] = React.useState(false);
     const [newSentence, setNewSentence] = useState(sentence);
 

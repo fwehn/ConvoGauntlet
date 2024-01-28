@@ -9,11 +9,5 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
-    <script>
-      let socket = io("ws://localhost:3001");
-      socket.on("debug", console.log);
-      socket.on("gesture", console.log);
-    </script>
   </body>
 </html>
