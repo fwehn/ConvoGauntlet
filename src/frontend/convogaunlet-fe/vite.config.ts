@@ -13,12 +13,9 @@ export default defineConfig({
         ws: false,
         rewrite: (path) => path.replace(/^\/base-rest/, ''),
       },
-      '/base-ws': {
-        target: 'http://localhost:3001/',
-        changeOrigin: false,
-        secure: false,
-        ws: true,
-        rewrite: (path) => path.replace(/^\/base-ws/, ''),
+      '/socket.io': {
+        target: 'ws://localhost:3001',
+        ws: true
       }
     }
   }
