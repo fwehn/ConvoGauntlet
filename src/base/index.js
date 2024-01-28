@@ -12,9 +12,8 @@ Promise.all([satelliteAdapter.start(), websocket.start(), rest.start()])
         // eslint-disable-next-line no-console
         messages.map((message) => console.log(message[0]));
         satelliteAdapter.onData(gestureizer.analyze);
+        gestureizer.onDebug(websocket.emitDebug);
         gestureizer.onGesture((gesture) => {
-            websocket.emitDebug(gesture);
-
             // eslint-disable-next-line no-console
             console.log(gesture);
 
