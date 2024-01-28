@@ -27,15 +27,13 @@ FLEXSENSORMAX=600
 ```
 
 After you created the `.env` file and modified it, you can simply run `npm run dev`.  
-For every variable default values are set (see below).  
-When there is no `SERIALPORT` defined or the service cannot connect to, it will start in `dummy` mode.
+For every variable default values are set (see below). When there is no `SERIALPORT` defined or the service cannot connect to, it will start in `dummy` mode.
 
 ## Websocket
 
 To connect to the websocket provided by the base service, add the following to your HTML:
 
 ```html
-
 <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
 <script>
     let socket = io("ws://localhost:<Port set in .env file>");
@@ -54,7 +52,7 @@ You can change the port by setting it in the `.env` file (Default: `3000`).
 ### Gestures
 
 | Method | Endpoint   | Body                                                 |
-|--------|------------|------------------------------------------------------|
+| ------ | ---------- | ---------------------------------------------------- |
 | POST   | /calibrate | `{"mode": "min", "calculate": true}`                 |
 | GET    | /gestures  | doesn't matter                                       |
 | POST   | /gestures  | `{"gesture": "AAAAA_up", "sentence": "Hello World"}` |
