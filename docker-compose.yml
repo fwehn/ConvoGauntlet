@@ -25,12 +25,9 @@ services:
     networks:
       - convo-gauntlet
     environment:
-      - FLEXSENSORZONES=4
+      - FLEXSENSORZONES=3
       - GESTURETIME=1500
       - TTSURL=http://marytts:59125
-    ports:
-      - "3000:3000"
-      - "3001:3001"
 
   frontend:
     build:
