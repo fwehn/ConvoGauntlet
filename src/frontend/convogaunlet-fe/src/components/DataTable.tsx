@@ -60,7 +60,8 @@ const CenteredTable: React.FC = () => {
                                     {row["sentence"]}
                                 </TableCell>
                                 <TableCell sx={{ border: 1 }}>
-                                    <EditDialog gesture={row["gesture"]} sentence={row["sentence"]}
+                                    <EditDialog label={"Edit"}
+                                        gesture={row["gesture"]} sentence={row["sentence"]}
                                                 onSaved={(sentence: string) => {
                                                     gestureMap[index]["sentence"] = sentence;
                                                     setGestureMap([...gestureMap]);
