@@ -1,18 +1,19 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Hand from "../assets/hand_model.jpeg";
 
 import { io } from "socket.io-client";
+import EditDialog from "../components/EditDialog.tsx";
 // import { getGestures } from "../rest/rest";
 
 const Live: React.FC = () => {
-  const [currentGesture, setCurrentGesture] = useState<any>(null);
+  const [currentGesture, setCurrentGesture] = useState<string>("");
   // const [allGesture, setAllGesture] = useState<any>("");
 
   useEffect(() => {
-    let socket = io();
+    const socket = io();
 
-    socket.on("debug", (gesture: any) => {
+    socket.on("debug", (gesture: string) => {
       setCurrentGesture(gesture);
       console.log(gesture);
     });
@@ -57,16 +58,13 @@ const Live: React.FC = () => {
               )}
             </Box>
           </Box>
-          <Button
-            variant="contained"
-            sx={{
-              borderRadius: "20px",
-              margin: "15px 100px",
-            }}
-            size="large"
-          >
-            Capture
-          </Button>
+
+            <EditDialog label={"Capture"}
+                gesture={currentGesture} sentence={""}
+                        onSaved={(sentence: string) => { alert(`Successfully Captured: ${currentGesture} => ${sentence}`)
+                        }}>
+
+            </EditDialog>
         </Box>
         <Box
           component={"div"}

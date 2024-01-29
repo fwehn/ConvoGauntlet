@@ -9,7 +9,8 @@ import { DialogTitle } from "@mui/material";
 import { postGesture } from "../rest/rest.tsx";
 import { useState } from "react";
 
-export default function EditDialog({ gesture, sentence, onSaved }: {
+export default function EditDialog({label, gesture, sentence, onSaved }: {
+    label: string,
     gesture: string,
     sentence: string,
     onSaved: (sentence: string) => void
@@ -44,7 +45,7 @@ export default function EditDialog({ gesture, sentence, onSaved }: {
                 }}
                 size="small"
             >
-                Edit
+                {label}
             </Button>
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>Edit</DialogTitle>
