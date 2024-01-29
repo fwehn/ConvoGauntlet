@@ -33,9 +33,9 @@ function onData(fn) {
         case "dummy":
             setInterval(() => {
                 let dummyData = {
-                    a: [0, 0, 0],
+                    a: [1, 1, 1],
                     g: [0, 0, 0],
-                    f: [0, 0, 0, 0, 0],
+                    f: [180, 200, 220, 240, 280],
                 };
 
                 fn(dummyData);
